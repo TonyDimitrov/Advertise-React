@@ -1,21 +1,27 @@
 function SingleProperty({
     id,
-    type,
+    category,
     price,
     city,
-    neighbourhood
+    location,
+    title,
+    image
 }) {
+
+    let rootUrl = "https://localhost:5001/advertises/";
+
     return (
         <article className="main-property">
             <article className="main-property-wrap-img">
-                <a href="./details.html">
-                    <img className="main-property-img" src="./main-image.jpg" alt="House" />
+                <a href={rootUrl + 'details/' + id}>
+                    <img className="main-property-img" src={rootUrl + 'GetImage/' + image} alt="House" />
                 </a>
             </article>
             <article className="main-property-text">
-                <p>{type}</p>
+                <p>{category}</p>
+                <p>{title}</p>
                 <p>{city}</p>
-                <p>{neighbourhood}</p>
+                <p>{location}</p>
                 <p>{price}</p>
             </article>
         </article>
@@ -23,9 +29,3 @@ function SingleProperty({
 }
 
 export default SingleProperty;
-
-// id={el.id}
-// type={el.property.type}
-// price={el.property.price}
-// city={el.property.city}
-// neighbouhood={el.property.neighbouhood}

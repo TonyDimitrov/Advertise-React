@@ -1,15 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SingleProperty from './SingleProperty';
+
+const rootUrl = "https://localhost:5001/advertises";
 
 function ListProperties() {
 
-    let [properties, setTodos] = useState([
+    let [propertiesTest, setPropertiesTest] = useState([
         {
             id: 1, property: {
                 type: 'Продава',
                 price: '105000',
                 city: 'София',
-                neighbourhood: 'Витоша'
+                location: 'Витоша'
             }
         },
         {
@@ -17,7 +19,7 @@ function ListProperties() {
                 type: 'Продава',
                 price: '45000',
                 city: 'Кюстендил',
-                neighbourhood: 'Широк център'
+                location: 'Широк център'
             }
         },
         {
@@ -25,34 +27,42 @@ function ListProperties() {
                 type: 'Под наем',
                 price: '650',
                 city: 'Софиа',
-                neighbourhood: 'Витоша'
+                location: 'Витоша'
             }
         }]);
 
-    function deleteSingleProperty(id) {
-        console.log(`Delete: ${id}`)
-        var newTodos = properties.filter(e => e.id != id);
+    const [properties, setProperties] = useState([]);
 
-        setTodos(newTodos);
-    }
+    useEffect(() => {
+
+        fetch(rootUrl)
+            .then(res => res.json())
+            .then(resultProperties => {
+            console.log(`up --${resultProperties.advertises}`);
+            setProperties(resultProperties.advertises);
+            })
+    }, []);
 
     return (
         <article className="filling">
             {properties.map(el =>
                 <SingleProperty key={el.id}
                     id={el.id}
-                    type={el.property.type}
-                    price={el.property.price}
-                    city={el.property.city}
-                    neighbourhood={el.property.neighbourhood}
-                    deleteTodo={deleteSingleProperty} />)}
+                    category={el.category}
+                    price={el.price}
+                    city={el.town}
+                    location={el.location}
+                    title={el.title}
+                    image={el.image} />)}
         </article>
     )
 }
 
-export default ListProperties;
+function deleteSingleProperty(id) {
+    console.log(`Delete: ${id}`)
+    // var newTodos = properties.filter(e => e.id != id);
 
-{/* <p>Под наем</p>
-<p>Цена 550лв</p>
-<p>София</p>
-<p>Малинова долина</p> */}
+    //setTodos(newTodos);
+}
+
+export default ListProperties;
