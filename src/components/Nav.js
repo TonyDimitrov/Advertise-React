@@ -1,21 +1,22 @@
+import { Link } from "react-router-dom";
 function Nav(){
     return (
         <nav>
         <article className="nav-wrap">
             <ul className="nav-logo-list">
-                <li><a className="nav-logo" href="./index.html">Logo</a></li>
+                <li><Link className="nav-logo" to="/">Logo</Link></li>
             </ul>
             <ul className="nav-main-list">
-                <li><a className="nav-logo" href="./index.html">Начало</a></li>
-                <li><a className="nav-logo" href="./properties.html">Обяви</a></li>
-                <li><a className="nav-logo" href="/create.html">Добави обява</a></li>
-                <li><a className="nav-logo" href="#">За нас</a></li>
+                <li><Link className="nav-logo" to="/">Начало</Link></li>
+                <li><Link className="nav-logo" to="/properties">Обяви</Link></li>
+                <li><Link className="nav-logo" to="/add-advertise">Добави обява</Link></li>
+                <li><Link className="nav-logo" to="/about">За нас</Link></li>
             </ul>
 
             <ul className="nav-logging-list">
-                <li className="not-registered"><a className="nav-logo" href="#">Вход</a></li>
-                <li className="not-registered"><a className="nav-logo" href="#">Регистрация</a></li>
-                <li className="registered"><a className="nav-logo" href="#">Излез</a></li>
+                <li className="not-registered"><Link className="nav-logo" to="#">Вход</Link></li>
+                <li className="not-registered"><Link className="nav-logo" to="#">Регистрация</Link></li>
+                <li className="registered"><Link className="nav-logo" to="#">Излез</Link></li>
             </ul>
         </article>
     </nav>

@@ -1,46 +1,18 @@
 import { useState, useEffect } from "react";
 import SingleProperty from './SingleProperty';
+import { getProperties } from "../services/propertiesService" 
 
 const rootUrl = "https://localhost:5001/advertises";
 
 function ListProperties() {
 
-    let [propertiesTest, setPropertiesTest] = useState([
-        {
-            id: 1, property: {
-                type: 'Продава',
-                price: '105000',
-                city: 'София',
-                location: 'Витоша'
-            }
-        },
-        {
-            id: 2, property: {
-                type: 'Продава',
-                price: '45000',
-                city: 'Кюстендил',
-                location: 'Широк център'
-            }
-        },
-        {
-            id: 3, property: {
-                type: 'Под наем',
-                price: '650',
-                city: 'Софиа',
-                location: 'Витоша'
-            }
-        }]);
-
     const [properties, setProperties] = useState([]);
 
     useEffect(() => {
-
-        fetch(rootUrl)
-            .then(res => res.json())
-            .then(resultProperties => {
-            console.log(`up --${resultProperties.advertises}`);
+        getProperties()
+        .then(resultProperties => {
             setProperties(resultProperties.advertises);
-            })
+            });
     }, []);
 
     return (
@@ -59,7 +31,7 @@ function ListProperties() {
 }
 
 function deleteSingleProperty(id) {
-    console.log(`Delete: ${id}`)
+    // console.log(`Delete: ${id}`)
     // var newTodos = properties.filter(e => e.id != id);
 
     //setTodos(newTodos);

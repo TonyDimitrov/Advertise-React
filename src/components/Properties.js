@@ -1,12 +1,12 @@
- import ListProperties from "./ListProperties";
+import ListProperties from "./ListProperties";
 
 
-function Main() {
+function  Properties() {
 
     return (
-        <main>
+        <div>
         <article className="main-image">
-            <img className="main-image-img" src="./main-house.jpg" alt="House"/>
+            <h2>Нашите оферти</h2>
 
         </article>
         <article className="main-search">
@@ -24,8 +24,8 @@ function Main() {
             </form>
         </article>  
         {<ListProperties/>}  
-    </main>
+    </div>
     )
 }
 
-export default Main;
+export default Properties;
