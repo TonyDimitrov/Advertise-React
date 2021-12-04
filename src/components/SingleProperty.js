@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 function SingleProperty({
     id,
     category,
@@ -11,11 +12,11 @@ function SingleProperty({
     let rootUrl = "https://localhost:5001/advertises/";
 
     return (
-        <article className="main-property">
+        <article className="main-property" >
             <article className="main-property-wrap-img">
-                <a href={rootUrl + 'details/' + id}>
+                <Link to={'details/' + id}>
                     <img className="main-property-img" src={rootUrl + 'GetImage/' + image} alt="House" />
-                </a>
+                </Link>
             </article>
             <article className="main-property-text">
                 <p>{category}</p>
