@@ -4,6 +4,7 @@ import Home from './components/Home';
 import Properties from './components/Properties';
 import About from './components/About';
 import Details from './components/Details';
+import Create from './components/Create';
 import Footer from './components/Footer';
 import { Route } from 'react-router-dom';
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/properties" component={Properties}/>         
         <Route path="/about" component={About}/>     
         <Route path="/details/:id" component={Details}/>     
+        <Route path="/add-advertise" component={Create}/>     
       </main>
 
       <Footer/>

@@ -1,6 +1,5 @@
 import ListProperties from "./ListProperties";
 
-
 function  Properties() {
 
     return (
@@ -9,7 +8,7 @@ function  Properties() {
             <h2>Нашите оферти</h2>
 
         </article>
-        <article className="main-search">
+        <article className="main-search display-static">
             <p>Какво търсите</p>
             <form action="">
                 <select id="type-property">
