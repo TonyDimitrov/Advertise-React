@@ -1,9 +1,38 @@
+import { useState, useEffect } from "react";
+import { Route } from 'react-router-dom';
+import { Redirect, useLocation } from 'react-router'
+import { postProperties } from "../services/postService" 
+
 function Create() {
+
+const [submitted, setSubmitted] = useState(false);
+
+const sendData = (e) => {
+    e.preventDefault();
+
+
+let formData = new FormData(e.currentTarget);
+
+    postProperties(undefined, formData)
+    .then(response => {
+        console.log('label 1');
+        console.log(response);
+        setSubmitted(true)
+        });    
+}
+
+if (submitted) {
+    return <Redirect push to={{
+      pathname: '/properties'
+    }}
+    />
+  }  
+
     return (
         <div className="container">
           <h2>Създайте обява</h2>
            
-            <form action="action_page.php">
+            <form method="post" enctype="multipart/form-data" onSubmit={sendData}>
 
             <label htmlFor="category">Тип на обявата</label>
             <select id="category" name="category">
@@ -34,9 +63,12 @@ function Create() {
             <input type="number" max="100000" id="deposit" name="deposit" placeholder=""/>
 
             <label htmlFor="image">Снимка</label>
-            <input type="file" id="image" name="image" placeholder=""/>
+            <input type="file" id="image" name="images" placeholder=""/>
 
-            <input type="submit" value="Submit"/>
+            <label htmlFor="image">Снимка</label>
+            <input type="file" id="image" name="images" placeholder=""/>
+
+            <input type="submit" value="Създай обява"/>
         
             </form> 
       </div>
@@ -44,32 +76,3 @@ function Create() {
   }
   
   export default Create;
-
-//   public Category Category { get; set; }
-
-//   public string Title { get; set; }
-
-//   public DateTime ExpirationDate { get; set; }
-
-//   public string ContactPerson { get; set; }
-
-//   public string ContactPhone { get; set; }
-
-//   public string ContactEmail { get; set; }
-
-
-// public string Description { get; set; }
-
-// public double Price { get; set; }
-
-// public double? Deposit { get; set; }
-
-// public string Lease { get; set; }
-
-// public double DiscountedPrice { get; set; }
-
-// public string Location { get; set; }
-
-// public string Country { get; set; }
-
-// public string Town { get; set; }
