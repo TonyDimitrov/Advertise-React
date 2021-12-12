@@ -4,7 +4,8 @@ import { Redirect, useLocation } from 'react-router'
 import { postProperties } from "../services/postService" 
 
 function Create() {
-
+const state = {value : 1};
+const [withDeposit, setDepositState] = useState(1);
 const [submitted, setSubmitted] = useState(false);
 const [imageInputList, setImageImput] = useState([1]);
 const sendData = (e) => {
@@ -17,6 +18,10 @@ let formData = new FormData(e.currentTarget);
     .then(response => {
         setSubmitted(true)
         });    
+}
+
+const changeDeposit = (e) => {
+  setDepositState(e.target.value);
 }
 
 const handleAddClick = (e) => {
@@ -34,8 +39,6 @@ const handleRemoveClick = (e, index) => {
 
   var list = [...imageInputList];
   list.splice(index, 1);
-  console.log(index);
-  console.log(list);
 
   setImageImput(list);
 };
@@ -54,7 +57,7 @@ if (submitted) {
             <form method="post" encType="multipart/form-data" onSubmit={sendData}>
 
             <label htmlFor="category">Тип на обявата</label>
-            <select id="category" name="category">
+            <select id="category" name="category" defaultValue={state.value} onClick={changeDeposit}>
                 <option value="1">Продава</option>
                 <option value="3">Отдава под наем</option>
             </select> 
@@ -76,13 +79,14 @@ if (submitted) {
             <input type="text" id="country" name="country" placeholder=""/>
 
             <label htmlFor="price">Цена</label>
-            <input type="number" min="1" max="1000000" id="price" name="price" placeholder=""/>
-
-            <div hidden>
+            <input type="number" min="1" max="1000000" id="price" name="price" placeholder=""/>          
+            {
+              withDeposit == 3 ? 
+              <div >
               <label htmlFor="deposit">Депозит</label>
-              <input type="number" max="100000" id="deposit" name="deposit" placeholder=""/>
-            </div>
-
+              <input type="number" max="100000" id="deposit" name="deposit" placeholder=""/></div>
+              : ''
+            }     
             <label htmlFor="contactPerson">Лице за контакт</label>
             <input type="text"  id="contactPerson" name="contactPerson" placeholder=""/>
 
